@@ -1,0 +1,14 @@
+@model whats_csharp.Models.EsqueciSenhaModel
+@{
+  ViewData["Title"] = "Código de recuperação";
+}
+
+<h2>Verificar Código</h2>
+
+<form asp-action="VerificaCodigo" method="post">
+  <label>E-mail de verificação</label>
+  <input asp-for="Email" class="form-control" placeholder="Digite seu e-mail" />
+  <span asp-validation-for="Email" class="text-danger"></span>
+
+  <button type="submit" class="btn btn-primary">Enviar</button>
+</form>

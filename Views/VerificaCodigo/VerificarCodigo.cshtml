@@ -1,0 +1,15 @@
+@model whats_csharp.Models.VerificaCodigoModel
+
+<h2>Verificar Código</h2>
+
+<form asp-action="VerificaCodigo" asp-action="VerificarCodigo" method="post">
+    <label>Código de verificação:</label>
+    <input asp-for="CodigoVerificacao" class="form-control" />
+    <span asp-validation-for="CodigoVerificacao" class="text-danger"></span>
+
+    <label>Código de verificação:</label>
+    <input asp-for="ConfirmarCodigo" class="form-control" />
+    <span asp-validation-for="ConfirmarCodigo" class="text-danger"></span>
+
+    <button type="submit" class="btn btn-primary">Verificar</button>
+</form>

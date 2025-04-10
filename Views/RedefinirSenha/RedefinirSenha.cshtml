@@ -1,0 +1,22 @@
+@model whats_csharp.Models.CadastroModel
+@{
+  ViewData["Title"] = "Redefinir Senha";
+  ViewBag.EsconderBotaoLogout = true;
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+  <form class="p-4 rounded shadow" asp-controller="RedefinirSenha" asp-action="RedefinirSenha" method="post" style="width: 320px; background-color: #fff;">
+    <h3 class="text-center mb-4" style="color: #0cc143;">Redefinir Senha</h3>
+    <div class="mb-4">
+      <label asp-for="Senha" class="form-label">Senha</label>
+      <input asp-for="Senha" type="password" class="form-control" placeholder="******">
+      <span asp-validation-for="Senha" class="text-danger"></span>
+    </div>
+    <div class="mb-4">
+      <label asp-for="ConfirmaSenha" class="form-label">Confirmar senha</label>
+      <input asp-for="ConfirmaSenha" type="password" class="form-control" placeholder="******">
+      <span asp-validation-for="ConfirmaSenha" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn w-100 text-white" style="background-color: #0cc143;">Cadastrar</button>
+  </form>
+</div>
