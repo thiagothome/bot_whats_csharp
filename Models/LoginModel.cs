@@ -2,7 +2,7 @@ namespace whats_csharp.Models
 {
     public class LoginModel
     {
-        public string Email { get; set; }
-        public string Senha { get; set; }
+        public  required string Email { get; set; } = string.Empty;
+        public  required string Senha { get; set; } = string.Empty;
     }
 }

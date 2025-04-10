@@ -3,7 +3,7 @@
 }
 
 @section Styles {
-  <link rel="stylesheet" href="~/css/index.css" />
+  <link rel="stylesheet" href="~/css/mensagem.css" />
 }
 
 <div class="d-flex flex-column justify-content-start align-items-center container">
@@ -11,14 +11,14 @@
     Bem-vindo ao disparador de mensagens automáticas
   </h2>
 
-  <div class="col-9 text-center g-3 containerPai">
+  <div class="col-9 text-center g-3 containerPai position-relative">
     <div class="col-lg mt-5">
       <label for="inputTelefone" class="fs-4 mt-5">Número do WhatsApp:</label>
       <input class="px-1 form-control d-inline-block w-50" type="tel" id="inputTelefone" placeholder="Insira o número de telefone" maxlength="13" required />
       <button type="button" id="btnAdicionar" class="btn btn-primary">Adicionar</button>
     </div>
 
-    <p id="mensagemErro" class="mensagem-erro d-none mt-3 p-2 text-light rounded"></p>
+    <p id="mensagemErro" class="mensagem-erro d-none mt-3 p-2 text-light rounded position-absolute top-0 start-0 w-100"></p>
 
     <div class="mt-5">
       <label for="mensagem" class="form-label">Sua mensagem aqui:</label>
@@ -29,7 +29,7 @@
 
 <div class="container py-2 d-flex flex-column">
   <h2 class="mt-5 text-center">Telefones adicionados</h2>
-  <button type="button" id="btnSalvar" class="btn btn-primary ms-auto">Salvar</button>
+  <button type="button" id="btnSalvar" class="btn btn-primary ms-auto" style="width:100px">Salvar</button>
 
   <table class="table mt-3">
     <thead>

@@ -59,7 +59,7 @@ namespace whats_csharp.Controllers
 
                 return Ok("Mensagens enviadas com sucesso.");
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return StatusCode(500, "Erro ao enviar mensagens.");
             }

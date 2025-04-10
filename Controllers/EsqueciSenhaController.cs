@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using whats_csharp.Services;
-using whats_csharp.Services;
 using whats_csharp.Data;
 using Microsoft.EntityFrameworkCore;
 

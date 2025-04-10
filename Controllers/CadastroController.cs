@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using whats_csharp.Models;
 
 namespace whats_csharp.Controllers
 {
@@ -17,9 +12,16 @@ namespace whats_csharp.Controllers
             return View("Cadastrar");
         }
 
-        public IActionResult Cadastrar()
+        [HttpPost]
+        public IActionResult Cadastrar(CadastroModel model)
         {
-            return View("Login");
+            if (!ModelState.IsValid)
+            {
+                return View(model); 
+            }
+
+
+            return RedirectToAction("Login", "Login");
         }
     }
 }

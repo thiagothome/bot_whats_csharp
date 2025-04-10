@@ -7,28 +7,25 @@
     <title>@ViewData["Title"] - whats_csharp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/global.css">
 </head>
 
 <body>
-    @if (ViewBag.EsconderBotaoLogout != true)
-    {
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <a asp-controller="Login" asp-action="Login" class="">
-                <i class="fas fa-sign-out-alt me-2"></i>
-            </a>
-        </nav>
-    }
-    <div class="container">
+   
+    <div class="container col-12 vh-100">
+         @if (ViewBag.EsconderBotaoLogout != true)
+            {
+                <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                    <a asp-controller="Login" asp-action="Login" class="">
+                        <i class="fas fa-sign-out-alt me-2"></i>
+                    </a>
+                </nav>
+            }
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - whats_csharp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)

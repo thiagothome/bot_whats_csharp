@@ -12,6 +12,8 @@ namespace whats_csharp.Controllers
 
     public class LoginController : Controller
     {
+
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
