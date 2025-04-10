@@ -1,0 +1,11 @@
+#mensagemErro {
+    background-color: #dc3545; /* vermelho Bootstrap */
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    min-height: 40px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  
