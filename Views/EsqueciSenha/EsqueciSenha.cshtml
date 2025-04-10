@@ -5,11 +5,20 @@
 }
 
 <div class="d-flex flex flex-column justify-content-center align-items-center" style="padding-top: 10rem;">
-  <form class="p-4 rounded shadow" asp-controller="Mensagem" asp-action="Mensagem" method="post" style="width: 500px; background-color: #fff;">
+  <form class="p-4 rounded shadow" asp-controller="EsqueciSenha" asp-action="EnviarCodigo" method="post" style="width: 500px; background-color: #fff;">
+     @{
+      var modelError = ViewData.ModelState[""];
+    }
+    @if (modelError != null && modelError.Errors.Count > 0)
+    {
+        <div class="text-danger text-center mb-0">
+            @modelError.Errors[0].ErrorMessage
+        </div>
+    }
     <h3 class="text-center mb-4" style="color: #0cc143;">Esqueci minha senha</h3>
     <div class="mb-3">
       <label asp-for="Email" class="form-label">E-mail de verificação</label>
-      <input asp-for="Email" class="form-control" placeholder="Digite seu e-mail">
+      <input asp-for="Email" class="form-control" placeholder="Digite seu e-mail" required>
       <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <button type="submit" class="btn w-100 text-white" style="background-color: #0cc143;">Enviar</button>

@@ -1,18 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using whats_csharp.Services;
 using whats_csharp.Data;
 using Microsoft.EntityFrameworkCore;
+using whats_csharp.Models;
 
 namespace whats_csharp.Controllers
 {
-
-
     public class EsqueciSenhaController : Controller
     {
         private readonly Contexto _contexto;
@@ -29,17 +22,17 @@ namespace whats_csharp.Controllers
             return View();
         }
 
-        public async Task<IActionResult> EnviarCodigo(string emailDestino)
+        public async Task<IActionResult> EnviarCodigo(EsqueciSenhaModel emailDestino)
         {
-            var usuario = await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Email == emailDestino);
+            var usuario = await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Email == emailDestino.Email);
             if (usuario == null)
             {
-                ModelState.AddModelError("EsqueciSenha", "E-mail não encontrado.");
+                ModelState.AddModelError(string.Empty, "E-mail não encontrado.");
                 return View("EsqueciSenha");
             }
 
             string codigo = new Random().Next(100000, 999999).ToString();
-            await _serviceEmail.EnviarCodigo(emailDestino, codigo);
+            await _serviceEmail.EnviarCodigo(usuario.Email, codigo);
 
             return RedirectToAction("Login", "Login");
         }

@@ -5,7 +5,16 @@
 }
 
 <div class="d-flex justify-content-center align-items-center vh-100">
-  <form class="p-4 rounded shadow" asp-controller="Mensagem" asp-action="Mensagem" method="post" style="width: 320px; background-color: #fff;">
+  <form class="p-4 rounded shadow position-relative" asp-controller="Login" asp-action="Logar" method="post" style="width: 320px; background-color: #fff;">
+    @{
+      var modelError = ViewData.ModelState[""];
+    }
+    @if (modelError != null && modelError.Errors.Count > 0)
+    {
+        <div class="text-danger text-center mb-0">
+            @modelError.Errors[0].ErrorMessage
+        </div>
+    }
     <h3 class="text-center mb-4" style="color: #0cc143;">Login</h3>
     <div class="mb-3">
       <label asp-for="Email" class="form-label">E-mail</label>
@@ -17,6 +26,7 @@
       <input asp-for="Senha" type="password" class="form-control" placeholder="******">
       <span asp-validation-for="Senha" class="text-danger"></span>
     </div>
+
     <button type="submit" class="btn w-100 text-white" style="background-color: #0cc143;">Entrar</button>
 
     <div class="text-center mt-3">

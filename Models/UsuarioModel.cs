@@ -1,8 +1,9 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace whats_csharp.Models
 {
-  public class CadastroModel
+  public class UsuarioModel
   {
     public int Id { get; set; }
 
@@ -19,10 +20,10 @@ namespace whats_csharp.Models
     [DataType(DataType.Password)]
     public required string Senha { get; set; }
 
-    [Required(ErrorMessage = "A confirmação da senha é obrigatória.")]
+    [NotMapped]
     [Compare("Senha", ErrorMessage = "As senhas não coincidem.")]
     [DataType(DataType.Password)]
-    public required string ConfirmaSenha { get; set; }
+    public string? ConfirmaSenha { get; set; }
 
     public string? CodigoRecuperacao { get; set; }
   }
