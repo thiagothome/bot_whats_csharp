@@ -1,6 +1,6 @@
 const botao = document.querySelector('.btn');
 const input = document.querySelector('input');
-const tBody = document.querySelector('tbody');
+const tBody = document.getElementById('tabelaTelefones');
 const mensagemInput = document.getElementById('mensagem');
 const mensagemErro = document.getElementById('mensagemErro');
 const btnSalvar = document.getElementById('btnSalvar');
@@ -31,6 +31,11 @@ function exibirMensagem(texto, tipo = 'erro') {
   }, 5000);
 }
 
+function limparInputTelefone() {
+  input.value = "";
+  input.focus();
+}
+
 function formataTelefone(numero) {
   numero = numero.replace(/\D/g, '');
   if (numero.length === 11) {
@@ -44,28 +49,27 @@ function formataTelefone(numero) {
 function validaTelefone() {
   const numero = input.value.trim();
   if (!/^\d{10,}$/.test(numero)) {
-    exibirMensagemErro("Número inválido. Insira pelo menos 10 dígitos.");
+    exibirMensagem("Número inválido. Insira pelo menos 10 dígitos.");
     return false;
   }
   return true;
 }
 
 function validaMensagem() {
-  const mensagem = mensagemInput.value.trim();
+  const mensagem = document.getElementById('mensagem').value.trim();
   if (mensagem === "") {
-    exibirMensagemErro("A mensagem não pode estar vazia");
+    exibirMensagem("A mensagem não pode estar vazia");
     return false;
   }
   return true;
 }
 
-
-function Enviar() {debugger
+function Enviar() {
   const telefones = [...document.querySelectorAll('.telefone-tabela')].map(td => td.textContent);
-  const mensagem = mensagemInput.value.trim();
+  const mensagem = document.getElementById('mensagem').value.trim();
 
   if (telefones.length === 0) {
-    exibirMensagemErro("Adicione pelo menos um número.");
+    exibirMensagem("Adicione pelo menos um número.");
     return;
   }
 
@@ -92,7 +96,8 @@ function Enviar() {debugger
     console.error('Erro:', err);
     exibirMensagem("Erro de conexão com o servidor.", 'erro');
   });
-}  
+}
+
 
 function adicionarTelefone(e) {
   e.preventDefault();
@@ -106,7 +111,7 @@ function adicionarTelefone(e) {
     .map(td => td.textContent);
 
     if (telefonesAdicionados.includes(telefoneFormatado)) {
-      exibirMensagemErro('Este número já foi adicionado.');
+      exibirMensagem('Este número já foi adicionado.');
       limparInputTelefone();
       return;
     }

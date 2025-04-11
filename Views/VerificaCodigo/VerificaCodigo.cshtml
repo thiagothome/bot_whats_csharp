@@ -1,0 +1,17 @@
+@model whats_csharp.Models.VerificaCodigoModel;
+@{
+    ViewData["Title"] = "Código de verificação";
+    ViewBag.EsconderBotaoLogout = true;
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <form class="p-4 rounded shadow" style="width: 500px;" asp-controller="VerificaCodigo" asp-action="VerificarCodigo" method="post" style="width: 320px; background-color: #fff;">
+        <h3 class="text-center mb-4" style="color: #0cc143;">Verificar código</h3>
+        <div class="mb-4">
+            <label asp-for="CodigoVerificacao" class="form-label">código de verificação</label>
+            <input asp-for="CodigoVerificacao" class="form-control" placeholder="Insira seu código de verificação aqui">
+            <span asp-validation-for="CodigoVerificacao" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn w-100 text-white" style="background-color: #0cc143;">Verificar</button>
+    </form>
+</div>

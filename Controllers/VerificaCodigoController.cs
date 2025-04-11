@@ -13,7 +13,8 @@ namespace whats_csharp.Controllers
 
         public IActionResult VerificarCodigo()
         {
-            return View("RedefinirSenha");
+
+            return RedirectToAction("RedefinirSenha", "RedefinirSenha");
         }
     }
 }

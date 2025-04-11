@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Threading; // necessário para Thread.Sleep
-using OpenQA.Selenium; // necessário para IWebDriver e NoSuchElementException
-using OpenQA.Selenium.Chrome; // necessário para ChromeDriver
+using System.Threading;
 using whats_csharp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-
-
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using System.Runtime.InteropServices;
 
 namespace whats_csharp.Controllers
 {
-
-
     public class MensagemController : Controller
     {
         public IActionResult Mensagem()
@@ -32,7 +29,11 @@ namespace whats_csharp.Controllers
             }
 
             var chromeOptions = new ChromeOptions();
-            chromeOptions.AddArgument(@"user-data-dir=C:\Temp\PerfilWhatsApp");
+            string userDataDir = RuntimeInformation.IsOSPlatform(OSPlatform.Windows)
+                ? @"C:\Temp\PerfilWhatsApp"
+                : "/home/thiago/.config/PerfilWhatsApp";
+
+            chromeOptions.AddArgument($"user-data-dir={userDataDir}");
             IWebDriver driver = new ChromeDriver(chromeOptions);
 
             try

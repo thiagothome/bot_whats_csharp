@@ -1,8 +1,11 @@
+using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Antiforgery;
+
 namespace whats_csharp.Models
 {
   public class VerificaCodigoModel
   {
-    public  required string CodigoVerificacao { get; set; } = string.Empty;
-    public  required string ConfirmarCodigo { get; set; } = string.Empty;
+    [Required(ErrorMessage = "O código é obrigatório.")]
+    public required string CodigoVerificacao { get; set; }
   }
 }

@@ -34,7 +34,7 @@ namespace whats_csharp.Controllers
             string codigo = new Random().Next(100000, 999999).ToString();
             await _serviceEmail.EnviarCodigo(usuario.Email, codigo);
 
-            return RedirectToAction("Login", "Login");
+            return RedirectToAction("VerificaCodigo", "VerificaCodigo");
         }
     }
 }
