@@ -10,7 +10,7 @@ namespace whats_csharp.Models
 {
     public class RedefinirSenhaModel
     {
-        public string Email { get; set; }
+        public required string Email { get; set; }
         [Required(ErrorMessage = "A senha é obrigatória.")]
         [DataType(DataType.Password)]
         public string Senha { get; set; } = string.Empty;
@@ -19,6 +19,7 @@ namespace whats_csharp.Models
         [Required(ErrorMessage = "A confirmação de senha é obrigatória.")]
         [Compare("Senha", ErrorMessage = "As senhas não coincidem.")]
         [DataType(DataType.Password)]
+        [Column("confirma_senha")]
         public string? ConfirmaSenha { get; set; }
 
     }

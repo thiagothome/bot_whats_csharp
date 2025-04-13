@@ -27,7 +27,7 @@ namespace whats_csharp.Controllers
         [HttpPost]
         public async Task<IActionResult> ConfirmarRedefinirSenha(RedefinirSenhaModel redefinirSenhaModel)
         {
-            redefinirSenhaModel.Email = TempData["Email"]?.ToString();
+            redefinirSenhaModel.Email = TempData["Email"]?.ToString() ?? string.Empty;
             ModelState.Clear();
 
             var usuarios = _contexto.Usuarios.FirstOrDefault(u => u.Email == redefinirSenhaModel.Email);
@@ -39,7 +39,7 @@ namespace whats_csharp.Controllers
 
             if (usuarios != null)
             {
-                usuarios.Senha = redefinirSenhaModel.ConfirmaSenha;
+                usuarios.Senha = redefinirSenhaModel.Senha;
                 await _contexto.SaveChangesAsync();
             }
 

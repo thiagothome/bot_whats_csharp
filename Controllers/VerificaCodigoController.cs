@@ -22,7 +22,8 @@ namespace whats_csharp.Controllers
         [HttpPost]
         public async Task<IActionResult> VerificarCodigo(VerificaCodigoModel verificaCodigoModel)
         {
-            var email = TempData["Email"];
+            var email = TempData["Email"]?.ToString() ?? string.Empty;
+
 
             if (!ModelState.IsValid)
             {

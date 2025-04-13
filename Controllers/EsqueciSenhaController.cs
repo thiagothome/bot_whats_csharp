@@ -29,7 +29,8 @@ namespace whats_csharp.Controllers
             {
                 ModelState.AddModelError(string.Empty, "E-mail não encontrado.");
                 return View("EsqueciSenha");
-            };
+            }
+            ;
 
             string codigo = new Random().Next(100000, 999999).ToString();
 
@@ -41,7 +42,7 @@ namespace whats_csharp.Controllers
             });
 
             await _contexto.SaveChangesAsync();
-            _serviceEmail.EnviarCodigo(usuario.Email, codigo);
+            await _serviceEmail.EnviarCodigo(usuario.Email, codigo);
 
             TempData["Email"] = esquecisenhamodel.Email;
 
