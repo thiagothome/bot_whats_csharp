@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using whats_csharp.Data;
+using whats_csharp.Models;
 
 namespace whats_csharp.Controllers
 {
@@ -23,8 +24,25 @@ namespace whats_csharp.Controllers
             return View();
         }
 
-        public IActionResult ConfirmarRedefinirSenha()
+        [HttpPost]
+        public async Task<IActionResult> ConfirmarRedefinirSenha(RedefinirSenhaModel redefinirSenhaModel)
         {
+            redefinirSenhaModel.Email = TempData["Email"]?.ToString();
+            ModelState.Clear();
+
+            var usuarios = _contexto.Usuarios.FirstOrDefault(u => u.Email == redefinirSenhaModel.Email);
+
+            if (!ModelState.IsValid)
+            {
+                return View("RedefinirSenha", redefinirSenhaModel);
+            }
+
+            if (usuarios != null)
+            {
+                usuarios.Senha = redefinirSenhaModel.ConfirmaSenha;
+                await _contexto.SaveChangesAsync();
+            }
+
             return RedirectToAction("Login", "Login");
         }
     }

@@ -24,7 +24,5 @@ namespace whats_csharp.Models
     [Compare("Senha", ErrorMessage = "As senhas não coincidem.")]
     [DataType(DataType.Password)]
     public string? ConfirmaSenha { get; set; }
-
-    public string? CodigoRecuperacao { get; set; }
   }
 }

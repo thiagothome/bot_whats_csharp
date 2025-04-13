@@ -6,6 +6,7 @@ namespace whats_csharp.Data
     public class Contexto : DbContext
     {
         public DbSet<UsuarioModel> Usuarios { get; set; }
+        public DbSet<CodigoConfirmacaoModel> Confirmacoes { get; set; }
 
         public Contexto(DbContextOptions<Contexto> options)
             : base(options)

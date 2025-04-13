@@ -22,17 +22,28 @@ namespace whats_csharp.Controllers
             return View();
         }
 
-        public async Task<IActionResult> EnviarCodigo(EsqueciSenhaModel emailDestino)
+        public async Task<IActionResult> EnviarCodigo(EsqueciSenhaModel esquecisenhamodel)
         {
-            var usuario = await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Email == emailDestino.Email);
+            var usuario = await _contexto.Usuarios.FirstOrDefaultAsync(u => u.Email == esquecisenhamodel.Email);
             if (usuario == null)
             {
                 ModelState.AddModelError(string.Empty, "E-mail não encontrado.");
                 return View("EsqueciSenha");
-            }
+            };
 
             string codigo = new Random().Next(100000, 999999).ToString();
-            await _serviceEmail.EnviarCodigo(usuario.Email, codigo);
+
+            _contexto.Confirmacoes.Add(new CodigoConfirmacaoModel
+            {
+                Email = esquecisenhamodel.Email,
+                CodigoRecuperacao = codigo,
+                TempoExpiracaCodigo = DateTime.Now.AddMinutes(1)
+            });
+
+            await _contexto.SaveChangesAsync();
+            _serviceEmail.EnviarCodigo(usuario.Email, codigo);
+
+            TempData["Email"] = esquecisenhamodel.Email;
 
             return RedirectToAction("VerificaCodigo", "VerificaCodigo");
         }

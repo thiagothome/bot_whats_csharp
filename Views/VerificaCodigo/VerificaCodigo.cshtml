@@ -6,6 +6,15 @@
 
 <div class="d-flex justify-content-center align-items-center vh-100">
     <form class="p-4 rounded shadow" style="width: 500px;" asp-controller="VerificaCodigo" asp-action="VerificarCodigo" method="post" style="width: 320px; background-color: #fff;">
+        @{
+            var modelError = ViewData.ModelState[""];
+        }
+        @if (modelError != null && modelError.Errors.Count > 0)
+        {
+            <div class="text-danger text-center mb-0">
+                @modelError.Errors[0].ErrorMessage
+            </div>
+        }
         <h3 class="text-center mb-4" style="color: #0cc143;">Verificar código</h3>
         <div class="mb-4">
             <label asp-for="CodigoVerificacao" class="form-label">código de verificação</label>
