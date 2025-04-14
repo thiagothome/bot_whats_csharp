@@ -10,9 +10,12 @@ using Microsoft.Extensions.Logging;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System.Runtime.InteropServices;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace whats_csharp.Controllers
 {
+    [Authorize]
     public class MensagemController : Controller
     {
         public IActionResult Mensagem()

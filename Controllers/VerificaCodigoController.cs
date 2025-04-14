@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using whats_csharp.Data;
 using whats_csharp.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace whats_csharp.Controllers
 {
+    [Authorize]
     public class VerificaCodigoController : Controller
     {
         private readonly Contexto _contexto;

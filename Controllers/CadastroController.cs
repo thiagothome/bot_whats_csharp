@@ -3,10 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using whats_csharp.Data;
 using whats_csharp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace whats_csharp.Controllers
 {
-
+    [Authorize]
     public class CadastroController : Controller
     {
 
@@ -14,7 +15,7 @@ namespace whats_csharp.Controllers
 
         public CadastroController(Contexto contexto)
         {
-                _contexto = contexto;
+            _contexto = contexto;
         }
 
         public IActionResult Cadastro()
@@ -27,17 +28,19 @@ namespace whats_csharp.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(dados); 
+                return View(dados);
             }
 
             bool emailExiste = await _contexto.Usuarios.AnyAsync(x => x.Email == dados.Email);
-            
-            if (emailExiste){
+
+            if (emailExiste)
+            {
                 ModelState.AddModelError("Email", "Email já cadastrado.");
                 return View("Cadastrar", dados);
             }
 
-            var novoUsuario = new UsuarioModel {
+            var novoUsuario = new UsuarioModel
+            {
                 Nome = dados.Nome,
                 Email = dados.Email,
                 Senha = dados.Senha

@@ -11,16 +11,17 @@
 </head>
 
 <body>
-   
+
     <div class="container col-12 vh-100">
-         @if (ViewBag.EsconderBotaoLogout != true)
-            {
-                <nav class="navbar navbar-expand-lg bg-body-tertiary">
-                    <a asp-controller="Login" asp-action="Login" class="">
-                        <i class="fas fa-sign-out-alt me-2"></i>
-                    </a>
-                </nav>
-            }
+        @if (ViewBag.EsconderBotaoLogout != true)
+        {
+            <form class="d-flex flex justify-content-between align-items-center" asp-controller="Login" asp-action="Logout" method="post" style="display: inline;">
+                <button type="submit" class="btn btn-link text-decoration-none">
+                    <i class="fas fa-sign-out-alt me-2"></i>
+                </button><span>@User.Identity.Name</span>
+            </form>
+
+        }
         <main role="main" class="pb-3">
             @RenderBody()
         </main>

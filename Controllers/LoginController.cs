@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using whats_csharp.Data;
 using whats_csharp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace whats_csharp.Controllers
 {
+    [AllowAnonymous]
     public class LoginController : Controller
     {
 
@@ -74,7 +73,27 @@ namespace whats_csharp.Controllers
             usuario.BloqueadoAte = null;
             usuario.TentativasFalhas = 0;
             await _contexto.SaveChangesAsync();
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, usuario.Nome),
+            };
+
+            var identidade = new ClaimsIdentity(claims, "CookieAuth");
+            var principal = new ClaimsPrincipal(identidade);
+
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+
             return RedirectToAction("Mensagem", "Mensagem");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return RedirectToAction("Login", "Login");
         }
     }
 }

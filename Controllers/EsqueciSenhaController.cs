@@ -3,9 +3,11 @@ using whats_csharp.Services;
 using whats_csharp.Data;
 using Microsoft.EntityFrameworkCore;
 using whats_csharp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace whats_csharp.Controllers
 {
+    [Authorize]
     public class EsqueciSenhaController : Controller
     {
         private readonly Contexto _contexto;

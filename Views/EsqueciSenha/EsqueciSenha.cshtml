@@ -4,6 +4,7 @@
   ViewBag.EsconderBotaoLogout = true;
 }
 
+
 <div class="d-flex flex flex-column justify-content-center align-items-center" style="padding-top: 10rem;">
   <form class="p-4 rounded shadow" asp-controller="EsqueciSenha" asp-action="EnviarCodigo" method="post" style="width: 500px; background-color: #fff;">
     @if (TempData["Erro"] != null)

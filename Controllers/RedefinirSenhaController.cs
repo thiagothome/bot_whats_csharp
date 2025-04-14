@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using whats_csharp.Data;
 using whats_csharp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace whats_csharp.Controllers
 {
+    [Authorize]
     public class RedefinirSenhaController : Controller
     {
         private readonly Contexto _contexto;

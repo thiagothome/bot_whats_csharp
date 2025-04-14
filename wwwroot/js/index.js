@@ -1,5 +1,5 @@
-const botao = document.querySelector('.btn');
-const input = document.querySelector('input');
+const botao = document.getElementById('btnAdicionar');
+const input = document.getElementById('inputTelefone');
 const tBody = document.getElementById('tabelaTelefones');
 const mensagemInput = document.getElementById('mensagem');
 const mensagemErro = document.getElementById('mensagemErro');
@@ -8,7 +8,6 @@ const btnSalvar = document.getElementById('btnSalvar');
 const listaDeTelefones = [];
 
 input.addEventListener('input', () => {
-  console.log(input.value)
   input.value = input.value.replace(/\D/g, "");
 })
 
@@ -46,8 +45,9 @@ function formataTelefone(numero) {
   return numero;
 }
 
-function validaTelefone() {
+function validaTelefone() {debugger
   const numero = input.value.trim();
+
   if (!/^\d{10,}$/.test(numero)) {
     exibirMensagem("Número inválido. Insira pelo menos 10 dígitos.");
     return false;
